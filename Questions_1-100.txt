@@ -132,6 +132,40 @@ var lengthOfLongestSubstring = function(s) {
 };
 
 Question 5--------------
+function isPalindrome(s) {
+    let k = 0;
+    let l = s.length - 1;
+    let isPalindrome = true;
+    while(k<=l) {
+        if (!(s.charAt(k) === s.charAt(l))) {
+            isPalindrome = false;
+            break;
+        }
+        k++;
+        l--;
+    }
+    return isPalindrome;
+}
+
+function longestPalindrome(s) {
+
+    let maxPalindrome = "";
+    
+    for (let i = 0; i <= s.length-1; i++) {
+        for (let j = i+1; j <= s.length; j++) {
+            let subStr = s.substring(i, j);
+            if (isPalindrome(subStr)) {
+                if (subStr.length > maxPalindrome.length) {
+                        maxPalindrome = subStr;
+                }
+            } 
+        }
+    }  
+    
+    return maxPalindrome;
+}
+
+
 var longestPalindrome = function(s) {
     let maxSub = '';
     
