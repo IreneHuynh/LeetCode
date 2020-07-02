@@ -4,6 +4,8 @@ Brute Force Approach: I would just iterate through the array using two pointers
 and if they add to the target I would return their indices, otherwise I would
 return an error
 
+Run time is O(n^2) 
+
 var twoSum = function(nums, target) {
     for(let i = 0; i< nums.length - 1; i++){
         for(let j = i+1; j< nums.length; j++){
@@ -13,4 +15,22 @@ var twoSum = function(nums, target) {
     
 };
 
-Optimal Approach:
+Optimal Approach: I would calculate the complement value of each number and store that
+value in a map. The map has a key of the element in the array and the value is the index
+As I iterate through the array, if I encounter the complement I would
+return the indices of both the elements.
+
+Run time is 0(n)
+
+var twoSum = function(nums, target) {
+    const compMap = new Map();
+    for (const num in nums) {
+        const complement = target - nums[num];
+        if (compMap.has(complement)) {
+            return [num, compMap.get(complement)]
+        }
+        compMap.set(nums[num], num);
+    }
+};
+
+------------------------------------------------------------------------------------
