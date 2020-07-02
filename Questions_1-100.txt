@@ -34,3 +34,42 @@ var twoSum = function(nums, target) {
 };
 
 ------------------------------------------------------------------------------------
+
+Question 2: Add Two Numbers
+
+Brute force: We would iterate through each list to check if the node exist and if there is a value
+We would then add the two values up and see if the value would be greater than 10
+If it we introduce an element named carry, which will either be 1 or 0; We continues add the values
+in the node list up along with the carry value. After the end of the list we want to check if there
+is a carry value at the end
+
+var addTwoNumbers = function(l1, l2) {
+   let p1 = l1;
+   let p2 = l2;
+   let num1 = 0;
+   let num2 = 0; 
+   let carry = 0;
+   let solution = new ListNode(0);
+   let current = solution;
+     
+   while (p1 || p2 ){
+     num1 = (p1) ? p1.val : 0;
+     num2 = (p2) ? p2.val : 0;
+   
+     if(num1 + num2 + carry > 9){
+         current.next = new ListNode(num1 + num2 + carry - 10);
+         current = current.next;
+         carry = 1;
+     } else {
+         current.next = new ListNode(num1 + num2 + carry);
+         current = current.next;
+         carry = 0;
+     }
+     
+     if(p1) p1 = p1.next;
+     if(p2) p2 = p2.next;
+   }
+    
+   current.next = carry? new ListNode(carry): 0;
+   return solution.next;
+};
