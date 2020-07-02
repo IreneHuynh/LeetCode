@@ -73,3 +73,62 @@ var addTwoNumbers = function(l1, l2) {
    current.next = carry? new ListNode(carry): 0;
    return solution.next;
 };
+
+This is an example of a recursive answer using the same logic
+
+var addTwoNumbers = function(l1, l2) {
+   function helper(list1 = l1, list2= l2, carry= 0) {
+        if(!list1 && !list2 && !carry) return null;
+        let sum = carry, next1 = null, next2 = null;
+        
+        if(list1 && list2) {
+            sum += (list1.val + list2.val);
+            next1 = list1.next;
+            next2 = list2.next;
+        } else if(list1) {
+            sum += list1.val;
+            next1 = list1.next;
+        } else if(list2) {
+            sum += list2.val;
+            next2 = list2.next;
+        }
+        
+        const newList = new ListNode(sum%10);
+        newList.next = helper(next1, next2, Math.floor(sum/10))
+        return newList;
+    }
+    
+    return helper();
+};
+
+Question 3: Longest Substring Without Repeating Characters------------------
+
+I like to think of this question like a sliding window. Where we have two 
+pointers the head and the tail and everytime we encounter a character that
+we have seen before we just add.
+Brute force:
+
+
+
+Optimals:
+var lengthOfLongestSubstring = function(s) {
+    let left = 0;
+    let right = 0;
+    let maxlength = 0;
+    let set = new Set();
+    
+    while(right < s.length){
+        if(!set.has(s.charAt(right))){
+            set.add(s.charAt(right));
+            right++;
+            maxlength = Math.max(set.size, maxlength);         
+        }
+        else{
+            set.delete(s.charAt(left));
+            left++;
+        }
+    }
+    return maxlength;
+};
+
+
