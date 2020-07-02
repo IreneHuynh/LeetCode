@@ -1,5 +1,5 @@
 
-Question 1: Two Sums
+Question 1: Two Sums-------------------------------------------------------------------------------------------------------------------------Question 1: Two Sums
 Brute Force Approach: I would just iterate through the array using two pointers
 and if they add to the target I would return their indices, otherwise I would
 return an error
@@ -33,9 +33,9 @@ var twoSum = function(nums, target) {
     }
 };
 
-------------------------------------------------------------------------------------
 
-Question 2: Add Two Numbers
+
+Question 2: Add Two Numbers-----------------------------------------------------------------------------------------------------------Question 2: Add Two Numbers
 
 Brute force: We would iterate through each list to check if the node exist and if there is a value
 We would then add the two values up and see if the value would be greater than 10
