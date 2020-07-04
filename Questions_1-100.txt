@@ -115,13 +115,12 @@ var addTwoNumbers = function(l1, l2) {
     return helper();
 };
 
-Question 3: Longest Substring Without Repeating Characters------------------
+Question 3: Longest Substring Without Repeating Characters---------------------------------------------Question 3: Longest Substring Without Repeating Characters
 
 I like to think of this question like a sliding window. Where we have two 
 pointers the head and the tail and everytime we encounter a character that
 we have seen before we just add.
 Brute force:
-
 
 
 Optimals:
@@ -144,8 +143,14 @@ var lengthOfLongestSubstring = function(s) {
     }
     return maxlength;
 };
+Question 4: Median of Two sorted Arrays-----------------------------------------------------------------------------------Question 4: Median of Two sorted Arrays
 
-Question 5--------------
+
+
+Question 5: Longest Palindromic Substring-------------------------------------------------------------------------------Question 5: Longest Palindromic Substring
+My thinking process towards this is if I start from the outer array and compare the letters towards the middle I can check if there exist two characters that are
+the same. If two aren't I continue inwards. 
+Brute Force:
 function isPalindrome(s) {
     let k = 0;
     let l = s.length - 1;
@@ -160,6 +165,7 @@ function isPalindrome(s) {
     }
     return isPalindrome;
 }
+
 
 function longestPalindrome(s) {
 
@@ -180,6 +186,7 @@ function longestPalindrome(s) {
 }
 
 
+Optimal: I am bubling from the middle outwards, the approach is similar but optimal because everything is done recursively
 var longestPalindrome = function(s) {
     let maxSub = '';
     
@@ -201,7 +208,8 @@ var longestPalindrome = function(s) {
     }
     return maxSub
 };
-Question 6-------------------------------------------
+Question 6: Zigzap Conversation---------------------------------------------------------------------------------------------------Question 6: Zigzap Conversation
+Optimal:
 var convert = function(s, numRows) {
   if (numRows === 1) return s;
 
@@ -220,7 +228,7 @@ var convert = function(s, numRows) {
 
   return rows.reduce((acc, row) => string + row.join(''), '');
 };
-Question 7-------------------------------------------------------
+Question 7: Reverse Integer-----------------------------------------------------------------------------------------------------------Question 7: Reverse Integer
 const reverse = (x) => {
   let absX = Math.abs(x);
   let result = '';
@@ -237,7 +245,7 @@ const reverse = (x) => {
   return x < 0 ? -result : +result;
 };
 
-Question 8: ---------------------
+Question 8: String to Integer-------------------------------------------------------------------------------------------------------Question 8: String to Integer
 var myAtoi = function(str) {
     
     let strArr = str.trim().split(" ")[0];
