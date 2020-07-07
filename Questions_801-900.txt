@@ -1,1 +1,9 @@
 
+838. Push Dominoes
+
+
+We want all the non dot letters
+and we also want their indices
+we then make a list for them
+
+
