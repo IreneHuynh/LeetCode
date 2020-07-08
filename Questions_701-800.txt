@@ -1,5 +1,9 @@
 Question 746:
 
+
+Optimal solution:
+Using memoization
+
 var minCostClimbingStairs = function(cost) {
     let dp = Array(cost.length);
     helper(cost, 0, dp);
