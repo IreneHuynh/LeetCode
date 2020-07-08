@@ -6,4 +6,33 @@ We want all the non dot letters
 and we also want their indices
 we then make a list for them
 
+However there is a slight bug in this because we are not yet accounting for the case where
+distances are odd 
+
+var pushDominoes = function(dominoes) {
+    let finalDominoes = dominoes.split("");
+    
+    for (let curr = 1; curr < dominoes.length; curr += 1) {
+        if (dominoes[curr] == "." && dominoes[curr - 1] == "R") {
+            let next = curr + 1;
+            while(next == ".") {
+                next += 1
+            }
+            next += 1;
+            if (dominoes[next] == "L") {
+                let distance = next - curr;
+                for (let i = 1; i <= Math.floor(distance / 2); i += 1) {
+                    finalDominoes[curr + i - 1] = "R";
+                    finalDominoes[next - i] = "L";
+                }
+            }
+        }
+        else if (dominoes[curr] == "L" && dominoes[curr - 1] == ".") {
+            finalDominoes[curr - 1] = "L";
+        }
+    }
+    
+    return finalDominoes.join("");
+};
+
 
