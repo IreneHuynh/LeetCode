@@ -1,1 +1,15 @@
+Question 746:
 
+var minCostClimbingStairs = function(cost) {
+    let dp = Array(cost.length);
+    helper(cost, 0, dp);
+    helper(cost, 1, dp);
+    function helper(cost, index, dp){
+        if (index >= cost.length) return 0;   
+        if (dp[index] != undefined) return dp[index];
+        dp[index] = cost[index] + Math.min(helper(cost, index + 1, dp), helper(cost, index + 2, dp));
+        return dp[index];
+        
+    }
+    return Math.min(dp[0], dp[1]);    
+};
