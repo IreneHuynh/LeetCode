@@ -1,1 +1,18 @@
 
+Question 278: Function Is Bad
+
+Optimal Solution:
+Here I am using the bisect right algorith for searching!
+
+const maxProfit = function(prices) {
+    if(prices.length < 2) return 0;
+    let minprice = prices[0];
+    let maxprofit = 0;
+    for (let i = 0; i < prices.length; i++) {
+        if (prices[i] < minprice)
+            minprice = prices[i];
+        else if (prices[i] - minprice > maxprofit)
+            maxprofit = prices[i] - minprice;
+        }
+    return maxprofit;
+};
