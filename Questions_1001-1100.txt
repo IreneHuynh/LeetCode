@@ -1,1 +1,27 @@
+Question 1027: Longest Arithmetic Sequence
 
+const longestArithSeqLength = function(A) {
+    let max = 0;
+    let seqNum = 0;
+    for(let i=0; i<A.length-1; i++){
+        for(let j=i+1; j<A.length; j++){
+            let diff = A[j] - A[i];
+            let k = j;
+            seqNum = 2;
+            while(true) {
+                let next = A.indexOf(A[k] + diff);
+                if(next > j && next < A.length){
+                    k = next;
+                    seqNum++;
+                }
+                else if(next == -1){
+                    break;
+                }
+            }
+            if(seqNum > max){
+                max = seqNum;
+            }
+        }
+    }
+    return max;
+};
