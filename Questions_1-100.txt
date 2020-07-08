@@ -256,3 +256,19 @@ var myAtoi = function(str) {
     
 };
 
+Question 39: Combination Sum
+
+var combinationSum = function(candidates, target) {
+    const res = [];
+    candidates.sort();
+    function permute(arr=[], remain = target, index=0) {
+        if(remain < 0) return;
+        else if(remain === 0) res.push(arr);
+        for(let i = index; i < candidates.length; i++) {
+            permute([...arr, candidates[i]], remain-candidates[i], i);
+        }
+    }
+    permute()
+    return res;
+};
+
