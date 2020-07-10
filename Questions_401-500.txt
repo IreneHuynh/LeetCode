@@ -1,1 +1,38 @@
+Question 474: Ones and Zeros
 
+Brute force:
+
+var findMaxForm = function(strs, m, n) {
+    const countMap = strs.map(str => getPair(str))
+    
+    let max = -Infinity;
+    
+    countMap.forEach((pair, i) => {
+        max = Math.max(max, rec(countMap, m, n, i, 0))
+    })
+    
+    return max;
+};
+
+const rec = (countMap, m, n, i, count) => {
+    if (m == 0 && n == 0) return count;
+    
+
+    if (m > 0 && n > 0 && i < countMap.length) {
+        let [currZeros, currOnes] = countMap[i];
+        return Math.max(rec(countMap, m - currZeros, n - currOnes, i + 1, count + 1), rec(countMap, m, n, i + 1, count))
+    }     
+    
+   
+    return -Infinity;
+}
+
+const getPair = (str) => {
+    let count = 0;
+    
+    for (let i = 0; i < str.length; i++) {
+        if (str[i] == "0") count += 1;
+    }
+    
+    return [count, str.length - count];
+}
