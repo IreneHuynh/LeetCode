@@ -1,5 +1,7 @@
 Question 474: Ones and Zeros
 
+This is similar to many other questions encountered where we just need to iterate through the possible combinations and then check the validity while also remember the count values;
+
 Brute force:
 
 var findMaxForm = function(strs, m, n) {
@@ -36,3 +38,7 @@ const getPair = (str) => {
     
     return [count, str.length - count];
 }
+
+We can further optimize the brute force such that it becomes easier to memoize it
+
+Optimal solution:
