@@ -1,1 +1,44 @@
 
+Question 567:
+
+Brute Force:
+
+var checkInclusion = function (s1, s2) {
+    let hashS1 = countStringHash(s1),
+        hashS2 = {},
+        windowLength = s1.length;
+
+    for (let i = 0; i < s2.length - windowLength + 1; i++) {
+        if (!hashS1[s2[i]]) continue;
+        for (let j = i; j < i + windowLength; j++) {
+            let char = s2[j];
+            if (!hashS1[char]) {
+                i = j;
+                break;
+            } else hashS2[char] = (hashS2[char] || 0) + 1;
+        }
+        if (isSubString(hashS1, hashS2)) return true;
+        else {
+            hashS2 = {};
+        }
+    }
+    return false;
+};
+
+const countStringHash = (s) => {
+    let hash = {};
+
+    s.split("").forEach((char) => {
+        hash[char] = (hash[char] || 0) + 1;
+    });
+
+    return hash;
+};
+
+const isSubString = (h1, h2) => {
+    for (let key1 in h1) {
+        if (h1[key1] != h2[key1]) return false;
+    }
+
+    return true;
+};
