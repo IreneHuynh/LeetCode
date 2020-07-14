@@ -1,1 +1,13 @@
+Question 650: 2 Keys
 
+Using Recursion/ need to edit
+
+var minSteps = function(n) {
+    if( n > 1) return Infinity;
+    
+    else if (n == 0) return 1;
+    
+    
+    return Math.min( 1+(minSteps(n)) ,2+(minSteps(Math.floor(n/2)) );
+    
+};
