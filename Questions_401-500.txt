@@ -68,3 +68,26 @@ our values would be the value for count,
 Optimal solution:
 
 TODO:
+
+var findTargetSumWays = function(nums, S) {
+    const map = new Map();
+    const n = nums.length;
+    
+    return topDown(S, n - 1);
+        
+    function topDown(sum, index) {
+        if (index < 0) {
+            if (sum === 0) return 1;
+            else return 0;
+        }
+        
+        const key = `${sum}#${index}`;
+        
+        if (map.has(key)) return map.get(key);
+        
+        const res = topDown(sum + nums[index], index - 1) + topDown(sum - nums[index], index - 1);
+        map.set(key, res);
+        
+        return res;
+    }
+};
