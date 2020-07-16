@@ -42,3 +42,29 @@ const getPair = (str) => {
 We can further optimize the brute force such that it becomes easier to memoize it
 
 Optimal solution:
+
+TODO
+
+
+
+Question 495: TargetSum
+
+The Brute force with recursion:
+
+const findTargetSumWays = function(nums, S) {
+    let helper = function(index = 0, remaining = S){
+        if(index == nums.length){
+            if(remaining == 0) return 1;
+            else {return 0;}
+        } 
+        return helper( index+1, remaining + nums[index]) + helper( index+1, remaining - nums[index]);
+    }
+  return helper();
+};
+
+Optimization is carried out with memos
+we can use the index and the depth of the tree as keys
+our values would be the value for count,
+Optimal solution:
+
+TODO:
