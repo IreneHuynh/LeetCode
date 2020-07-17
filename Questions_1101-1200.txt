@@ -24,6 +24,22 @@ var minHeightShelves = function(books, shelf_width) {
 Optimal Solution: 
 Similar to other case, the optimal solution is just a memo;
 
+var minHeightShelves = function(books, shelf_width) {
+    let helper = function(index = 0,curheight = 0, remainingWidth = shelf_width){
+        if(index == books.length) return curheight;
+        minheight = Infinity;
+        let [width, height] = books[index];
+        if(curheight == 0) minheight = helper(index + 1, height, remainingWidth - width);
+        else if(width > remainingWidth) minheight = curheight + helper(index, 0, shelf_width);
+        else{
+            minheight = Math.min( helper(index+1, Math.max(curheight, height), remainingWidth - width),
+                                 curheight + helper(index ,0, shelf_width));
+        }
+        return minheight;
+    }
+    return helper();
+};
+
 
 
 
