@@ -1,6 +1,37 @@
+Question: 1105: Filling Bookcase Shelves
+
+Brute Force:
+We simply ask ourselves if we should add the book or not, then it becomes a tree like pattern.
+If we add the book to the shelf we decrease the width remaining, otherwise we add to the existing height;
+
+var minHeightShelves = function(books, shelf_width) {
+    let helper = function(index = 0,curheight= 0, remainingWidth = shelf_width){
+        if(index == books.length) return curheight;
+        minheight = Infinity;
+        let [width, height] = books[index];
+        if(curheight == 0) minheight = helper(index + 1, height, remainingWidth - width);
+        else if(width > remainingWidth) minheight = curheight + helper(index, 0, shelf_width);
+        else{
+            minheight = Math.min( helper(index+1, Math.max(curheight, height), remainingWidth - width),
+                                 curheight + helper(index ,0, shelf_width));
+        }
+        return minheight;
+        
+    }
+    return helper();
+};
+
+Optimal Solution: 
+Similar to other case, the optimal solution is just a memo;
+
+
+
+
+
+
 Question 1113:
 
-ar largest1BorderedSquare = function(grid) {
+var largest1BorderedSquare = function(grid) {
     let max = 0;
     //Time coplexity O(n^2 * n^2) = O(n^4) where n is grid length;
     // Space comeplxity O(1);
