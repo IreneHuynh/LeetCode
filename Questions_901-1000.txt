@@ -2,14 +2,17 @@
 Question 931: Minimum Falling Path Sum
 Brute Force using recursion: 
 var minFallingPathSum = function(A) {
-    let minPathSum = 0;
-    for (let i = 0; i < A.length; i++) {
-        for (let j = 0; j < A[i].length; j++) {
-            const top = A[i - 1][j];
-            const left = A[i][j - 1];
-            
-            minPathSum = Math.min(A[i][j] + top + left, minPathSum)
+    for(let i = 1; i < A.length; i++) {
+        for(let j = 0; j < A[0].length; j++) {
+            if(j == 0) {
+                A[i][j] += Math.min(A[i-1][j], A[i-1][j+1]);
+            } else if(j == A[0].length - 1){
+                A[i][j] += Math.min(A[i-1][j-1], A[i-1][j]);
+            } else {
+                let minFirstTwo = Math.min(A[i-1][j-1], A[i-1][j]);
+                A[i][j] += Math.min(minFirstTwo, A[i-1][j+1]);
+            }
         }
     }
-    return minPathSum;
+    return Math.min(...A[A.length - 1]);
 };
