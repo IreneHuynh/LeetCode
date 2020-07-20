@@ -1,1 +1,53 @@
 
+Question 1277: Count Square Submatrices With All Ones
+
+Brute forces:
+We can divide it into three functions.
+1) expanding the square
+2) checking if our square contains all ones
+3) And making sure it is within our bounds when we are expanding
+
+var countSquares = function (matrix) {
+    if (!matrix || !Array.isArray(matrix[0])) return 0;
+
+    let numberOfSquares = 0;
+
+    matrix.forEach((row, i) => {
+        row.forEach((_, j) => {
+            numberOfSquares += expandSquare(matrix, [i, j]);
+        });
+    });
+
+    return numberOfSquares;
+};
+
+const expandSquare = function (matrix, bottomRightVertex) {
+    let numberOfSquares = 0;
+    let topLeftVertex = [...bottomRightVertex];
+    while (isSquare(matrix, topLeftVertex, bottomRightVertex)) {
+        numberOfSquares += 1;
+        topLeftVertex[0] -= 1;
+        topLeftVertex[1] -= 1;
+    }
+    return numberOfSquares;
+};
+
+const isSquare = function (matrix, topLeftVertex, bottomRightVertex) {
+    const [i, j] = topLeftVertex;
+    const [r, c] = bottomRightVertex;
+
+    if (!inBound(topLeftVertex)) {
+        return false;
+    }
+
+    for (let a = i; a <= r; a++) {
+        for (let b = j; b <= c; b++) {
+            if (matrix[a][b] == 0) return false;
+        }
+    }
+
+    return true;
+};
+const inBound = function ([i, j]) {
+    return i >= 0 && j >= 0;
+};
