@@ -272,3 +272,34 @@ var combinationSum = function(candidates, target) {
     return res;
 };
 
+Unique BST II
+Brute force:
+
+var generateTrees = function(n) {
+    if(n <= 0) {
+        return [];
+    }
+    return solve(1, n);
+};
+
+function solve(start, end) {
+    var treeList = [];
+    if(start > end) {
+        treeList.push(null);
+        return treeList;
+    }
+    for(var i = start; i <= end; i++) {
+        var leftList = solve(start, i - 1);
+        var rightList = solve(i + 1, end);
+        
+        for(var j = 0; j < leftList.length; j++) {
+            for(var k = 0; k < rightList.length; k++) {
+                var curNode = new TreeNode(i);
+                curNode.left = leftList[j];
+                curNode.right = rightList[k];
+                treeList.push(curNode);
+            }
+        }
+    }
+    return treeList;
+}
