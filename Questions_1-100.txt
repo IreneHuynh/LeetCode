@@ -303,3 +303,36 @@ function solve(start, end) {
     }
     return treeList;
 }
+
+Using the optimal:
+
+var generateTrees = function(n) {
+    if(n == 0) return [];
+    let map = new Map();
+    
+    let helper = function(lo = 1, high = n){
+        const result = []
+        if(lo > high) {
+            result.push(null);
+            return result
+        }
+        const key = `${lo}#${high}`;
+        if(map.has(key)) return map.get(key);
+        for(let i=lo; i<=high; i++) {
+            const leftNodes = helper(lo, i-1)
+            const rightNodes = helper(i+1, high)
+
+            for(let j=0; j<leftNodes.length; j++) {
+                for(let k=0; k<rightNodes.length; k++) {
+                    const root = new TreeNode(i);
+                    root.left = leftNodes[j];
+                    root.right = rightNodes[k];
+                    result.push(root)
+                }
+            }
+        }
+        map.set(key, result);
+        return result;
+    }
+    return helper();
+};
