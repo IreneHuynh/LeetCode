@@ -17,3 +17,38 @@ var minCostClimbingStairs = function(cost) {
     }
     return Math.min(dp[0], dp[1]);    
 };
+
+Question 764: Largest Plus Sign
+
+Brute force:
+We are simply expanding out and testing the boundary case
+However there isn't an optimal solution in this case because we do not revisit due to our iterative method
+
+var orderOfLargestPlusSign = function(N, mines) {
+    let max = 0;
+    let matrix = [...Array(N)].map((_, x)  => [...Array(N)].map((_, y) => mindes[x][y] ? 0 : 1));
+    
+    let memo = [...Array(N)].map(_ => [...Array(N)].map(_ => null));
+    
+    for (let x = 0; x < N; x++) {
+        for (let y = 0; y < N; y++) {
+            max = Math.max(max, expandPlusSign(matrix, x, y, count, memo))
+        }
+    }
+    
+    return max;
+};
+
+const expandPlusSign = (matrix, x, y, count, memo) => {
+    if (isOutOfBound(x, y)) return count;
+    
+    if (memo[x][y]) return memo[x][y];
+    
+    const top    = matrix[x][y + count];
+    const bottom = matrix[x][y - count];
+    const left   = matrix[x - count][y];
+    const right  = matrix[x + count][y];
+    
+    memo[x][y] = (top && bottom && left && right) ? expandPlusSign(matrix, x, y, memo) ? count;
+    return memo[x][y];  
+}
