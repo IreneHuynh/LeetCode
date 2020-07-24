@@ -84,3 +84,47 @@ const isValidSquare = (grid, i, j, k, r) => {
     
     return true;
 }
+
+Question 1143: Longest Common Subsequence
+
+Brute force: 
+We can branch into three paths, we either increment both index, the first index, or the other;
+var longestCommonSubsequence = function(text1, text2) {
+    let in1 = text1.length ;
+    let in2 = text2.length ;
+    let max = 0;
+    let helper = function(ind1 = 0, ind2 = 0){
+        if(in1 == ind1 || in2 == ind2) return 0;
+        else if(text1[ind1] === text2[ind2]) {
+            max = helper(ind1 +1, ind2 +1) + 1;
+        }
+        else{
+            max = Math.max(helper(ind1+1, ind2), helper(ind1, ind2+1), helper(ind1+1, ind2+1));
+        }
+        return max;
+    }
+    return helper();
+};
+
+Optimal: 
+We just make a memo:
+var longestCommonSubsequence = function(text1, text2) {
+    let in1 = text1.length ;
+    let in2 = text2.length ;
+    let max = 0;
+    const map = new Map();
+    let helper = function(ind1 = 0, ind2 = 0){
+        let key = `${ind1}#${ind2}`;
+        if(map.has(key)) return map.get(key);
+        if(in1 == ind1 || in2 == ind2) return 0;
+        else if(text1[ind1] === text2[ind2]) {
+            max = helper(ind1 +1, ind2 +1) + 1;
+        }
+        else{
+            max = Math.max(helper(ind1+1, ind2), helper(ind1, ind2+1), helper(ind1+1, ind2+1));
+        }
+        map.set(key, max);
+        return max;
+    }
+    return helper();
+};
