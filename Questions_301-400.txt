@@ -1,8 +1,8 @@
 
-Question 343: Integer Break
+Question 343: Integer Break-----------------------------------------------------------------------------------------------------------Question 343: Integer Break
 
 Optimal solution:
-  We want to take the Max of either the number itself multiplied by one or we split it to its divisors
+We want to take the Max of either the number itself multiplied by one or we split it to its divisors
 
 var integerBreak = function(n) {
     var dp = new Array(n+1).fill(0);
