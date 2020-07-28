@@ -1,5 +1,7 @@
 Question 1027: Longest Arithmetic Sequence
 
+Brute force: We would just look 
+
 const longestArithSeqLength = function(A) {
     let max = 0;
     let seqNum = 0;
@@ -24,4 +26,22 @@ const longestArithSeqLength = function(A) {
         }
     }
     return max;
+};
+
+Optimal Answer: we would memoize it using the key equal to the index and the difference, however we want to think of the results in an updated version and a current version.
+
+
+var longestArithSeqLength = function(A) {
+    let map = new Map();
+    let max = 2;
+  
+    for(let i = 0; i < A.length -1; i++) {
+        for(let j = i +1; j < A.length; j++) {
+            let diff = A[j] - A[i];
+            let res = map.get(`${i}#${diff}`) +1 || 2;
+            map.set(`${j}#${diff}`, res);
+            max = Math.max(max, res)
+        }
+    }
+    return max
 };
