@@ -1,5 +1,5 @@
 
-Question 1277: Count Square Submatrices With All Ones
+Question 1277: Count Square Submatrices With All Ones-----------------------------------------------------Question 1277: Count Square Submatrices With All Ones
 
 Brute forces:
 We can divide it into three functions.
@@ -54,7 +54,7 @@ const inBound = function ([i, j]) {
 
 
 To Optimize we just use a memo:
-We are just storing the previous counts at each matrix, rather than doing the expanding out method, we will be checking with of the neighbouring values in the matrix has a min value. This is similar to the expansion method, however we are no long expanding out we are checking the safest number that we can choose, because we are just adding on to our current count. We are checking the top, left and the diagonal spaces to see what is the safest number that we previously expanded by.
+We are just storing the previous counts at each matrix, rather than doing the expanding out method, we will be checking with of the neighbouring values in the matrix has a min value. If we were to really examine the expanding out process, it would be the same as checking the neighbouring cells and seeing what is the safest number to expand by. That process is the same as looking at our pass cells and choosing the minimum.
 
 const countSquares = matrix => {
   let count = 0;
