@@ -1,4 +1,4 @@
-Question: 1105: Filling Bookcase Shelves
+Question: 1105: Filling Bookcase Shelves---------------------------------------------------------------------------------Question: 1105: Filling Bookcase Shelves
 
 Brute Force:
 We simply ask ourselves if we should add the book or not, then it becomes a tree like pattern.
@@ -41,11 +41,9 @@ var minHeightShelves = function(books, shelf_width) {
 };
 
 
+Question 1139: Largest 1-Bordered Squares-------------------------------------------------------------------------------Question 1139: Largest 1-Bordered Squares
 
-
-
-
-Question 1113:
+Brute force: We are essentially breaking this question down to 3 functions. These three functions are basilly expanding the search outward and breaking the square we are checking into 2 points. The top left and the bottom right corners. For each expansion we are checking if it is square and whether or not it is within the boundaries.
 
 var largest1BorderedSquare = function(grid) {
     let max = 0;
@@ -85,7 +83,7 @@ const isValidSquare = (grid, i, j, k, r) => {
     return true;
 }
 
-Question 1143: Longest Common Subsequence
+Question 1143: Longest Common Subsequence-------------------------------------------------------------------------------Question 1143: Longest Common Subsequence
 
 Brute force: 
 We can branch into three paths, we either increment both index, the first index, or the other;
