@@ -1,6 +1,6 @@
 Question 1027: Longest Arithmetic Sequence
 
-Brute force: We would just look 
+Brute force: We would just look the difference and basically try to guess the upcoming sequence; 
 
 const longestArithSeqLength = function(A) {
     let max = 0;
