@@ -33,21 +33,6 @@ var twoSum = function(nums, target) {
     }
 };
 
-Quetion 9----------
-
-var isPalindrome = function(x) {
-    let xcopy = x;
-    let reverse = 0;
-    if(x< 0 ||( x%10 === 0)) return false;
-    while(x > 0){
-        reverse = (reverse *10) + (x%10);
-        x /= 10;
-    }
-    return reverse;           
-};
-
-
-
 
 Question 2: Add Two Numbers-----------------------------------------------------------------------------------------------------------Question 2: Add Two Numbers
 
@@ -186,7 +171,7 @@ function longestPalindrome(s) {
 }
 
 
-Optimal: I am bubling from the middle outwards, the approach is similar but optimal because everything is done recursively
+Optimal: I am bubbling from the middle outwards, the approach is similar but optimal because everything is done recursively
 var longestPalindrome = function(s) {
     let maxSub = '';
     
@@ -208,6 +193,8 @@ var longestPalindrome = function(s) {
     }
     return maxSub
 };
+
+
 Question 6: Zigzap Conversation---------------------------------------------------------------------------------------------------Question 6: Zigzap Conversation
 Optimal:
 var convert = function(s, numRows) {
@@ -256,7 +243,27 @@ var myAtoi = function(str) {
     
 };
 
-Question 39: Combination Sum
+Question 9: Palindrome Number-------------------------------------------------------------------------------------------------------Question 9: Palindrome Number
+Brute Force: The idea behind this is to pop off the last ligit until we can effectively produce a copy of the input function and at that point we compare 
+
+const isPalindrome = (x) => {
+  const str = String(x);
+  if (str.length === 1) return true;
+  const reverse = value => {
+    let result = '';
+    for (let i = value.length - 1; i >= 0; i -= 1) {
+      result += value[i];
+    }
+    return result;
+  }
+  return reverse(str) === str;
+};
+
+Again there is no optimal solution to this because this is alread O(n)work.
+
+Question 39: Combination Sum---------------------------------------------------------------------------------------------------------Question 39: Combination Sum
+
+Brute Force: We simply want to collect the possible combinations if it reaches the target. This is where the backtracking technique comes in handing. We will only add a list of possible combinations if it reaches the target sum.
 
 var combinationSum = function(candidates, target) {
     const res = [];
@@ -272,7 +279,9 @@ var combinationSum = function(candidates, target) {
     return res;
 };
 
-Unique BST II
+We wouldn't be able to memoize this because we trust the backtracking and also we are not revisiting any past combinations. Basically we wouldn't be able to optimize the solution any further.
+
+Question 95: Unique Binary Search Trees II-----------------------------------------------------------------------------Question 95: Unique Binary Search Trees II
 Brute force:
 
 var generateTrees = function(n) {
@@ -304,7 +313,7 @@ function solve(start, end) {
     return treeList;
 }
 
-Using the optimal:
+Using the optimal: all we do similiar to the previous question is we memoize it.
 
 var generateTrees = function(n) {
     if(n == 0) return [];
