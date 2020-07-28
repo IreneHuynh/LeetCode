@@ -51,3 +51,21 @@ const isSquare = function (matrix, topLeftVertex, bottomRightVertex) {
 const inBound = function ([i, j]) {
     return i >= 0 && j >= 0;
 };
+
+
+To Optimize we just use a memo:
+We are just storing the previous counts at each matrix, rather than doing the expanding out method, we will be checking with of the neighbouring values in the matrix has a min value. This is similar to the expansion method, however we are no long expanding out we are checking the safest number that we can choose, because we are just adding on to our current count. We are checking the top, left and the diagonal spaces to see what is the safest number that we previously expanded by.
+
+const countSquares = matrix => {
+  let count = 0;
+  for (let i = 0; i < matrix.length; ++i) {
+    for (let j = 0; j < matrix[0].length; ++j) {
+      if (matrix[i][j] === 0) continue;
+      if (i > 0 && j > 0) {
+        matrix[i][j] += Math.min(matrix[i - 1][j], matrix[i][j - 1], matrix[i - 1][j - 1]);
+      }
+      count += matrix[i][j];
+    }
+  }
+  return count;
+};
