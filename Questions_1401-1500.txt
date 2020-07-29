@@ -1,52 +1,35 @@
-Question 1482:
+Question 1482: Minimum Numbers of Days to Make m Bouquets---------------------------------------------Question 1482: Minimum Numbers of Days to Make m Bouquets
 
-var minDays = function (bloomDay, m, k) {
-    let totalNumberOfFlowers = bloomDay.length;
-    let requiredNumberOfFlowers = m * k;
+Brute force, this is essentially a search problem. We are trying to search through the array to see if we can collect m*k flowers such that each m bouquets consist of k adjacent flowers. We are checking if we can make a m bouquets of k flowers in our helper. We are simply increasing the mid and checking if we can make m bouquets of k within that array.
 
-    if (totalNumberOfFlowers < requiredNumberOfFlowers) return -1;
-
-    // Time complexity for getting unique values = O(N) where N is the length of bloomDay
-    // Time complexity for sort unique values = O(N * logN) where N is the length of bloomDay
-
-    // Space complexity for both = O(n)
-    let uniqueBloomDay = [...new Set(bloomDay)].sort((a, b) => a - b);
-    let lo = 0;
-    let hi = uniqueBloomDay.length - 1;
-
-    // Time complexity = O(logN) where N is the length of bloomDay
-    // Space complexity = O(1)
-    while (lo <= hi) {
-        let mid = Math.floor((lo + hi) / 2);
-        let daysToWait = uniqueBloomDay[mid];
-
-        if (doWeHaveEnoughFlowers(bloomDay, daysToWait, m, k)) {
-            hi = mid - 1;
-        } else {
-            lo = mid + 1;
-        }
+var minDays = function(bloomDay, m, k) {
+    if(m*k > bloomDay.length)return -1
+    let start = 0,end = Math.max(...bloomDays),final=-1
+    
+    while(start <= end){
+          let mid = Math.floor((start+end)/2)
+          if(helper(bloomDay,m,k,mid)){
+              end = mid - 1
+              final = mid
+          }else{
+              start = mid+1
+          }
     }
-    return uniqueBloomDay[lo];
+    return final
 };
 
-const doWeHaveEnoughFlowers = (bloomDay, daysToWait, m, k) => {
-    // Time complexity = O(n) where n is the length of bloomDay
-    // Space complexity = O(1)
-    let numBouquets = 0;
-    let numFlower = 0;
-
-    for (let i = 0; i < bloomDay.length; i++) {
-        if (bloomDay[i] <= daysToWait) {
-            numFlower += 1;
-        } else {
-            numFlower = 0;
-        }
-
-        if (numFlower == k) {
-            numBouquets += 1;
-            numFlower = 0;
+var helper = (days,m,k,mid)=>{
+    let count=0,total=0
+    for(let i=0;i<days.length;i++){
+        if(days[i] <= mid){
+            count++
+            if(count == k){
+                total++
+                count = 0
+            }
+        }else{
+            count = 0
         }
     }
-
-    return numBouquets >= m;
-};
+    return total >= m
+}
