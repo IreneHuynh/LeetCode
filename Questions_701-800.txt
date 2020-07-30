@@ -1,3 +1,29 @@
+Question 714: Best Time to Buy and Sell Stock with Transaction Fee-----------------------------Question 714: Best Time to Buy and Sell Stock with Transaction Fee
+
+We basically branch off into 2 paths, either we buy or we don't buy that stock, from there we can branch off again, into another subset of questions. When we have a stock, we either have a stock that we bought and from that we can either hang onto it or sell it. In our other main branch we have no previous stock, so we either continue to not buy anymore stock or buy one.
+
+ var maxProfit = function(prices, fee) {
+    let results = 0;
+    let n = prices.length;
+    let helper = function(i = 0, buy = false){
+        if(i >= n) return 0;
+        if(buy){
+            results = Math.max( helper(i+1, false) + prices[i] - fee,
+                              helper(i+1, true));
+        }
+        else{
+            results = Math.max( helper(i+1, true) - prices[i],
+                              helper(i+1, false));
+        }
+
+        return results;
+    }
+    return helper();
+};
+
+To optimize we would rather use bfs
+
+
 Question 746:
 
 
