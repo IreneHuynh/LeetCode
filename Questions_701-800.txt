@@ -21,10 +21,27 @@ We basically branch off into 2 paths, either we buy or we don't buy that stock, 
     return helper();
 };
 
-To optimize we would rather use bfs
+To optimize we would rather use bfs:
+
+var maxProfit = function(prices, fee) {
+    if (!prices || !prices.length) {
+        return 0;
+    }
+    
+    const n = prices.length;
+    let profit = 0;
+    let hold = -prices[0];
+    
+    for (let i = 1; i < n; i++) {
+        profit = Math.max(profit, hold + prices[i] - fee);
+        hold = Math.max(hold, profit - prices[i]);
+    }
+    
+    return profit;
+};
 
 
-Question 746:
+Question 746: Min Cost Climbing Stairs-------------------------------------------------------------------------------------Question 746: Min Cost Climbing Stairs
 
 
 Optimal solution:
@@ -44,7 +61,7 @@ var minCostClimbingStairs = function(cost) {
     return Math.min(dp[0], dp[1]);    
 };
 
-Question 764: Largest Plus Sign
+Question 764: Largest Plus Sign---------------------------------------------------------------------------------------------------Question 764: Largest Plus Sign
 
 Brute force:
 We are simply expanding out and testing the boundary case
