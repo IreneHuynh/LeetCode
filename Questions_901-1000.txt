@@ -1,6 +1,7 @@
 
-Question 931: Minimum Falling Path Sum
-Brute Force using recursion: 
+Question 931: Minimum Falling Path Sum---------------------------------------------------------------------------------Question 931: Minimum Falling Path Sum
+Brute Force using recursion: At first we are generating all the possible combinations of falling. We then store all the possible combinates and the sums. We then try to find the smallest sum.
+
 var minFallingPathSum = function(A) {
     for(let i = 1; i < A.length; i++) {
         for(let j = 0; j < A[0].length; j++) {
