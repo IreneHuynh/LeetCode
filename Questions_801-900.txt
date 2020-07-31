@@ -1,13 +1,8 @@
 
-838. Push Dominoes
+Question 838: Push Dominoes-----------------------------------------------------------------------------------------------------------Question 838: Push Dominoes
 
 
-We want all the non dot letters
-and we also want their indices
-we then make a list for them
-
-However there is a slight bug in this because we are not yet accounting for the case where
-distances are odd 
+We want all the non dot letters and we also want their indices we then make a list for them. However there is a slight bug in this because we are not yet accounting for the case where distances are odd 
 
 var pushDominoes = function(dominoes) {
     let finalDominoes = dominoes.split("");
