@@ -1,44 +1,45 @@
 
-Question 567:
+Question 567: Permutations in String------------------------------------------------------------------------------------Question 567: Permutations in String
 
-Brute Force:
+Brute Force: This is basically as sliding window approach. This is the most optimal solution
 
-var checkInclusion = function (s1, s2) {
-    let hashS1 = countStringHash(s1),
-        hashS2 = {},
-        windowLength = s1.length;
-
-    for (let i = 0; i < s2.length - windowLength + 1; i++) {
-        if (!hashS1[s2[i]]) continue;
-        for (let j = i; j < i + windowLength; j++) {
-            let char = s2[j];
-            if (!hashS1[char]) {
-                i = j;
-                break;
-            } else hashS2[char] = (hashS2[char] || 0) + 1;
-        }
-        if (isSubString(hashS1, hashS2)) return true;
-        else {
-            hashS2 = {};
+const checkInclusion = (s1, s2) => {
+    if(s1.length > s2.length) return false;
+    
+    const freq = getFrequency(s1);
+    const winLength = s1.length;
+    let start = 0;
+    let end = 0;
+    
+    while(end < s2.length) {
+        const endLetter = s2.charAt(end);
+        const startLetter = s2.charAt(start);
+        
+        if(freq.has(endLetter) && freq.get(endLetter) > 0) {
+            freq.set(endLetter, freq.get(endLetter) - 1);
+            
+            if(end - start + 1 === winLength) return true;
+            
+            end += 1;
+        } else if(freq.has(startLetter)) {
+            freq.set(startLetter, freq.get(startLetter) + 1);
+            start += 1;
+        } else {
+            start += 1;
+            end += 1;
         }
     }
+    
     return false;
 };
 
-const countStringHash = (s) => {
-    let hash = {};
-
-    s.split("").forEach((char) => {
-        hash[char] = (hash[char] || 0) + 1;
-    });
-
-    return hash;
-};
-
-const isSubString = (h1, h2) => {
-    for (let key1 in h1) {
-        if (h1[key1] != h2[key1]) return false;
+const getFrequency = (str) => {
+    const freq = new Map();
+    for(const letter of str) {
+        if(!freq.has(letter)) freq.set(letter, 0);
+        freq.set(letter, freq.get(letter) + 1);
     }
-
-    return true;
+    
+    return freq;
 };
+
