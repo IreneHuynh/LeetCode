@@ -1,3 +1,4 @@
+
 Question: 1105: Filling Bookcase Shelves---------------------------------------------------------------------------------Question: 1105: Filling Bookcase Shelves
 
 Brute Force:
@@ -38,6 +39,24 @@ var minHeightShelves = function(books, shelf_width) {
         return minheight;
     }
     return helper();
+};
+
+Question 1130: Minimum Cost Tree From Leaf Values-----------------------------------------------------------------------Question 1130: Minimum Cost Tree From Leaf Values
+
+Brute force:
+var mctFromLeafValues = function(arr) {
+    let res = 0
+    while (arr.length > 1) {
+        let min = Math.min(...arr)
+        let min_idx = arr.indexOf(min)
+        if (0 < min_idx && min_idx < arr.length - 1) {
+            res += Math.min(arr[min_idx - 1], arr[min_idx + 1]) * min
+        } else {
+            res += (min_idx === 0 ? arr[min_idx + 1] : arr[min_idx - 1]) * min
+        }
+        arr.splice(min_idx, 1)
+    }
+    return res
 };
 
 
