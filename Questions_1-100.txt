@@ -261,6 +261,21 @@ const isPalindrome = (x) => {
 
 Again there is no optimal solution to this because this is alread O(n)work.
 
+Question 27: Remove Element-----------------------------------------------------------------------------------------------------------Question 27: Remove Element
+
+var removeElement = function(nums, val) {
+    let len = nums.length;
+    let i = 0;
+    while (i < len){
+        if (nums[i] == val){
+            nums[i] = nums[len-1]; //cur need remove, move last ele to here
+            len--;
+        }
+        else i++;
+    }
+    return len;  
+};
+
 Question 39: Combination Sum---------------------------------------------------------------------------------------------------------Question 39: Combination Sum
 
 Brute Force: We simply want to collect the possible combinations if it reaches the target. This is where the backtracking technique comes in handing. We will only add a list of possible combinations if it reaches the target sum.
