@@ -19,6 +19,38 @@ var integerBreak = function(n) {
 
 Question 394: Decode String-----------------------------------------------------------------------------------------------------------Question 394: Decode String
 
+This can either be recursive or stack,
+
+var decodeString = function(s) {
+    var code;
+    var startIndex;
+    var result = [""];
+    var count = [];
+    
+    for (var i = 0; i < s.length; i++) {
+        if (s[i] === "[") {
+            result.push("");
+        } else if (s[i] === "]") {
+            result[result.length - 2] += result.pop().repeat(count.pop());
+        } else if (s[i].charCodeAt() < 58) {
+            startIndex = i;
+            while (s[i + 1].charCodeAt() < 58) {
+                i++;
+            }
+
+            count.push(+s.substring(startIndex, i + 1));
+        } else {
+            startIndex = i;
+            while ((code = s.charCodeAt(i + 1)) > 96 && code < 123) {
+                i++;
+            }
+            result[result.length - 1] += s.substring(startIndex, i + 1);
+        }
+    }
+    
+    return result.pop();
+};
+
 var decodeString = function(s) {
     return helper(s, "")
     
