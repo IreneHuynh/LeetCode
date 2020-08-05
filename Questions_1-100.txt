@@ -281,6 +281,24 @@ var combinationSum = function(candidates, target) {
 
 We wouldn't be able to memoize this because we trust the backtracking and also we are not revisiting any past combinations. Basically we wouldn't be able to optimize the solution any further.
 
+
+Question 53: Maximum Subarray-------------------------------------------------------------------------------------------------------Question 53: Maximum Subarray
+We can use kadanes algorithm which is prefixSum
+
+const maxSubArray = function(nums) {
+    let max_ending_here = 0;
+    let max_so_far = -Number.MAX_VALUE;
+
+  for (let i = 0; i < nums.length; i++) {
+      max_ending_here = Math.max(max_ending_here + nums[i], nums[i]);
+      max_so_far =  Math.max(max_ending_here, max_so_far);
+  }
+    
+  return max_so_far;
+};
+
+
+
 Question 95: Unique Binary Search Trees II-----------------------------------------------------------------------------Question 95: Unique Binary Search Trees II
 Brute force:
 
