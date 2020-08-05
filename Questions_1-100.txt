@@ -312,6 +312,23 @@ const maxSubArray = function(nums) {
   return max_so_far;
 };
 
+Question 66: Plus One-----------------------------------------------------------------------------------------------------------------------Question 66: Plus One
+
+var plusOne = function(digits) {
+    var pos = digits.length - 1;
+    while(pos >=0 && digits[pos] === 9) {
+        digits[pos] = 0;
+        pos--;
+    }
+    if (pos < 0) {
+       digits.unshift(1)
+    } else {
+        digits[pos] += 1;
+    }
+    
+    return digits;
+}
+
 Question 88: Merge Sorted Array---------------------------------------------------------------------------------------------------Question 88: Merge Sorted Array
 
 
