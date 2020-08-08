@@ -276,6 +276,14 @@ var removeElement = function(nums, val) {
     return len;  
 };
 
+Question 28: Implement strStr()-------------------------------------------------------------------------------------------------------Question 28: Implement strStr()
+
+This is easily done with a one liner
+
+var strStr = function(haystack, needle) {
+    return haystack.indexOf(needle);
+};
+
 Question 39: Combination Sum---------------------------------------------------------------------------------------------------------Question 39: Combination Sum
 
 Brute Force: We simply want to collect the possible combinations if it reaches the target. This is where the backtracking technique comes in handing. We will only add a list of possible combinations if it reaches the target sum.
