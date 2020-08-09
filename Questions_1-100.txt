@@ -261,6 +261,21 @@ const isPalindrome = (x) => {
 
 Again there is no optimal solution to this because this is alread O(n)work.
 
+Question 21: Merge Two Sorted Lists--------------------------------------------------------------------------------------------------Question 21: Merge Two Sorted Lists
+
+
+const mergeTwoLists = (l1, l2) => {
+    if(!l1 || !l2) return l1 || l2
+    if(l1.val < l2.val){
+        l1.next = mergeTwoLists(l1.next, l2)
+        return l1
+    }
+    else {
+        l2.next = mergeTwoLists(l1, l2.next)
+        return l2
+    }
+}
+
 Question 27: Remove Element-----------------------------------------------------------------------------------------------------------Question 27: Remove Element
 
 var removeElement = function(nums, val) {
