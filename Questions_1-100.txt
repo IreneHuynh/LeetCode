@@ -353,6 +353,15 @@ const maxSubArray = function(nums) {
   return max_so_far;
 };
 
+Question 58: Length of Last Word-----------------------------------------------------------------------------------------------------------Question 58: Length of Last Word
+
+We just split the strings and find the length of the last element of the array
+
+var lengthOfLastWord = function(s) {
+    let words = s.split(' ').filter(str => str);
+    return words.length ? words[words.length-1].length : 0;
+};
+
 Question 66: Plus One-----------------------------------------------------------------------------------------------------------------------Question 66: Plus One
 
 var plusOne = function(digits) {
