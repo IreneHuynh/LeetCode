@@ -338,6 +338,29 @@ var multiply = function(num1, num2) {
     
 }
 
+Question 46: Permutations
+
+There are many questions similar to this where we use the backtracking method
+
+var permute = function(nums) {
+    let res = [];
+    Permutations(nums,[]);
+    return res;
+    
+    function Permutations(nums,ans){
+      if(nums.length == 0){
+            res.push(ans);
+            return;
+      }  
+      for(let i = 0; i < nums.length; ++i){
+         let k = nums[i];
+         nums.splice(i,1);
+         Permutations(nums, [...ans,k]);
+         nums.splice(i,0,k);
+      }
+  }
+};
+
 Question 53: Maximum Subarray-------------------------------------------------------------------------------------------------------Question 53: Maximum Subarray
 We can use kadanes algorithm which is prefixSum
 
