@@ -8,7 +8,9 @@ My goal is to be able to break the my thinking process in a shorter time
 Notes:
   Some tips would be going through the brute force and then asking yourself how or if it is worth optimizing.
   
-  Sometimes it is best to look at how we may branch to aggricate this same problem problem but small to our children nodes
+  Sometimes it is best to look at how we may branch to aggregate this same problem problem but small to our children nodes. Some questions may also be state machines such as the buy or sell types of problems. Others when it comes to not creating memory we want to look at the information we do not need and simply override it. 
+  
+  I found that solving a problem with different solutions helps to solidify questions too.
 
   To optimize questions we can rely on either memoization or even bfsing algorithms.
   However memoization is not always the case, we have to remember that some algorithms only go through paths once, not many times.
