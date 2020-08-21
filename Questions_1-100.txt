@@ -506,3 +506,37 @@ var generateTrees = function(n) {
     }
     return helper();
 };
+Question 36:
+var isValidSudoku = function(board) {
+    let rows ={};
+    let columns = {};
+    let boxes = {};
+    
+    // make maps
+    for (let i = 0; i < 9; i++){
+        rows[i] = {};
+        columns[i] = {};
+        boxes[i] = {}
+    }
+    
+    //Evaluate Sudoku
+    for(let row = 0; row < 9 ; row++){
+        let currentRow = rows[row];
+        for(let column = 0; column < 9; column++){
+            let value = board[row][column];
+            let currentColumn = columns[column];
+            let currentBox = boxes[Math.floor(row / 3) * 3 + Math.floor(column / 3)];
+            
+            if(value !== ".") {
+                if(currentRow[value] || currentColumn[value] || currentBox[value]){
+                    return false;
+                } else {
+                    currentRow[value] = true;
+                    currentColumn[value] = true;
+                    currentBox[value] = true;
+                } 
+            }
+        }
+    }
+    return true;
+};
