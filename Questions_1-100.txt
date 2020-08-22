@@ -299,6 +299,42 @@ var strStr = function(haystack, needle) {
     return haystack.indexOf(needle);
 };
 
+Question 36: Valid Sudoku-------------------------------------------------------------------------------------------------------------Question 36: Valid Sudoku
+var isValidSudoku = function(board) {
+    let rows ={};
+    let columns = {};
+    let boxes = {};
+    
+    // make maps
+    for (let i = 0; i < 9; i++){
+        rows[i] = {};
+        columns[i] = {};
+        boxes[i] = {}
+    }
+    
+    //Evaluate Sudoku
+    for(let row = 0; row < 9 ; row++){
+        let currentRow = rows[row];
+        for(let column = 0; column < 9; column++){
+            let value = board[row][column];
+            let currentColumn = columns[column];
+            let currentBox = boxes[Math.floor(row / 3) * 3 + Math.floor(column / 3)];
+            
+            if(value !== ".") {
+                if(currentRow[value] || currentColumn[value] || currentBox[value]){
+                    return false;
+                } else {
+                    currentRow[value] = true;
+                    currentColumn[value] = true;
+                    currentBox[value] = true;
+                } 
+            }
+        }
+    }
+    return true;
+};
+
+
 Question 39: Combination Sum---------------------------------------------------------------------------------------------------------Question 39: Combination Sum
 
 Brute Force: We simply want to collect the possible combinations if it reaches the target. This is where the backtracking technique comes in handing. We will only add a list of possible combinations if it reaches the target sum.
@@ -505,38 +541,4 @@ var generateTrees = function(n) {
         return result;
     }
     return helper();
-};
-Question 36:
-var isValidSudoku = function(board) {
-    let rows ={};
-    let columns = {};
-    let boxes = {};
-    
-    // make maps
-    for (let i = 0; i < 9; i++){
-        rows[i] = {};
-        columns[i] = {};
-        boxes[i] = {}
-    }
-    
-    //Evaluate Sudoku
-    for(let row = 0; row < 9 ; row++){
-        let currentRow = rows[row];
-        for(let column = 0; column < 9; column++){
-            let value = board[row][column];
-            let currentColumn = columns[column];
-            let currentBox = boxes[Math.floor(row / 3) * 3 + Math.floor(column / 3)];
-            
-            if(value !== ".") {
-                if(currentRow[value] || currentColumn[value] || currentBox[value]){
-                    return false;
-                } else {
-                    currentRow[value] = true;
-                    currentColumn[value] = true;
-                    currentBox[value] = true;
-                } 
-            }
-        }
-    }
-    return true;
 };
