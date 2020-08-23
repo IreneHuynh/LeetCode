@@ -233,6 +233,10 @@ const reverse = (x) => {
 };
 
 Question 8: String to Integer-------------------------------------------------------------------------------------------------------Question 8: String to Integer
+
+Brute Forces:
+    We just need to check for leading spaces, and making sure the first element is a number. Then we do simple boundary checks before casting returning it. This is O(n) time complexity.
+
 var myAtoi = function(str) {
     
     let strArr = str.trim().split(" ")[0];
@@ -263,6 +267,8 @@ Again there is no optimal solution to this because this is alread O(n)work.
 
 Question 21: Merge Two Sorted Lists--------------------------------------------------------------------------------------------------Question 21: Merge Two Sorted Lists
 
+Optimal Solution: 
+We are just comparing which element in the string is larger and then adding it onto the list, the function is recursive and will only take O(n+m) work where n and m are the length of l1 and l2 respectively.
 
 const mergeTwoLists = (l1, l2) => {
     if(!l1 || !l2) return l1 || l2
@@ -278,12 +284,15 @@ const mergeTwoLists = (l1, l2) => {
 
 Question 27: Remove Element-----------------------------------------------------------------------------------------------------------Question 27: Remove Element
 
+Optimal Solution: 
+This is one of the cases where we have to think about what kind of information we need and which we don't. Instead of going through the array, we can just replace it with the last element. 
+
 var removeElement = function(nums, val) {
     let len = nums.length;
     let i = 0;
     while (i < len){
         if (nums[i] == val){
-            nums[i] = nums[len-1]; //cur need remove, move last ele to here
+            nums[i] = nums[len-1];
             len--;
         }
         else i++;
@@ -293,7 +302,8 @@ var removeElement = function(nums, val) {
 
 Question 28: Implement strStr()-------------------------------------------------------------------------------------------------------Question 28: Implement strStr()
 
-This is easily done with a one liner
+Optimal Solution:
+This is easily done with a one liner dude to javascripts library.
 
 var strStr = function(haystack, needle) {
     return haystack.indexOf(needle);
@@ -353,9 +363,11 @@ var combinationSum = function(candidates, target) {
     return res;
 };
 
-We wouldn't be able to memoize this because we trust the backtracking and also we are not revisiting any past combinations. Basically we wouldn't be able to optimize the solution any further.
+We wouldn't be able to memoize this because we trust the backtracking and also we are not revisiting any past combinations. Basically we wouldn't be able to optimize the solution any further. Many of the question involving backtracking are the same
 
 Question 43: Muliply Strings---------------------------------------------------------------------------------------------------------Question 43: Muliply Strings
+
+
 var multiply = function(num1, num2) {
     if (num1 === '0' || num2 === '0') return '0'
     
@@ -376,7 +388,7 @@ var multiply = function(num1, num2) {
 
 Question 46: Permutations
 
-There are many questions similar to this where we use the backtracking method
+There are many questions similar to this where we use the backtracking method and because we are not revisiting values, we wouldn't have a reason to memoize it
 
 var permute = function(nums) {
     let res = [];
