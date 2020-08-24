@@ -386,7 +386,7 @@ var multiply = function(num1, num2) {
     
 }
 
-Question 46: Permutations
+Question 46: Permutations---------------------------------------------------------------------------------------------------------Question 46: Permutations
 
 There are many questions similar to this where we use the backtracking method and because we are not revisiting values, we wouldn't have a reason to memoize it
 
@@ -407,6 +407,32 @@ var permute = function(nums) {
          nums.splice(i,0,k);
       }
   }
+};
+
+Question 49: Group Anagrams-------------------------------------------------------------------------------------------------------Question 49: Group Anagrams
+
+This question is very similar to finding the complement. We just make sure that all the letters are the same for all the elements in the array
+
+var groupAnagrams = function(strs) {
+    strs = strs.sort();
+    var mapping = {};
+    for (var i = 0; i < strs.length; i++) {
+        var str = strs[i];
+        var sorted = str.split('').sort().join('');
+        
+        if (mapping[sorted] === undefined) {
+            mapping[sorted] = [str];
+        } else {
+            mapping[sorted].push(str);
+        }
+    }
+    
+    var output = [];
+    for (var arr in mapping) {
+        output.push(mapping[arr]);
+    }
+    
+    return output;
 };
 
 Question 53: Maximum Subarray-------------------------------------------------------------------------------------------------------Question 53: Maximum Subarray
