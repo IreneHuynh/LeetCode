@@ -1,3 +1,20 @@
+Question 905: Sort Array By Parity-------------------------------------------------------------------------------------Question 905: Sort Array By Parity
+
+The brute force:
+would to construct an even and odd array and then merge it.
+
+Optimal Solution:
+However I thought of the optimal first. We would just have two pointers such that they are going inwards. We would just swap the element of the left pointer if it was odd with the element in the right point.
+
+var sortArrayByParity = function(A) {
+    let left = 0, right = A.length - 1
+    while (left < right) {
+        while (A[left] % 2 === 0 && left < right) left++
+        while (A[right] % 2 !== 0 && left < right) right--
+        [A[left], A[right]] = [A[right], A[left]]
+    }
+    return A
+};
 
 Question 931: Minimum Falling Path Sum---------------------------------------------------------------------------------Question 931: Minimum Falling Path Sum
 Brute Force using recursion: At first we are generating all the possible combinations of falling. We then store all the possible combinates and the sums. We then try to find the smallest sum.
