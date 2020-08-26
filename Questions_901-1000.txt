@@ -16,6 +16,45 @@ var sortArrayByParity = function(A) {
     return A
 };
 
+Question 914: X of a Kind of Cards-------------------------------------------------------------------------------------Question 914: X of a Kind of Cards
+
+Brute force:
+
+Would to count the occurences of different types of cards, and it should be divisible by the number of cards in the deck. This is more of a math problem because this is simply a gcd problem
+
+Optimal Solution:
+
+var hasGroupsSizeX = function(deck) {
+  const map = {};
+  deck.forEach(d => {
+    map[d] = (map[d] || 0) + 1;
+  });
+  const groups = Object.values(map);
+  let g = groups[0];
+  for (let i = 1; i < groups.length; i++) {
+    g = gcd(g, groups[i]);
+    if (g < 2) return false;
+  }
+  return g >= 2;
+};
+
+const gcd = (x, y) => (x === 0 ? y : gcd(y % x, x));
+
+
+Question 922: Sort Array by Parity
+
+Optimal Solution: 
+    This question build onto the two pointer answer, where we just swap the odd element to the back and keep the even elements in the front.
+
+  for (let i = 0, j = 1; i < A.length; i += 2) {
+    if (A[i] % 2) {
+      while (A[j] % 2 && j < A.length) j += 2;
+      [A[i], A[j]] = [A[j], A[i]];
+    }
+  }
+  return A;
+};
+
 Question 931: Minimum Falling Path Sum---------------------------------------------------------------------------------Question 931: Minimum Falling Path Sum
 Brute Force using recursion: At first we are generating all the possible combinations of falling. We then store all the possible combinates and the sums. We then try to find the smallest sum.
 
