@@ -18,3 +18,5 @@ Notes:
   As for brute force, we are usually maximizing or minimizing sums.
   We may even encounter cases where they ask us to build state machines.
   It is rare that we have to change the virtual indexing.
+  
+  I also found that when solving problems it is easier through a certain type of question. It helps for pattern recognization. For instance, I found that for arrays, there are about 3 ways to solve it. 2 pointers: where we use a swap, prefix sum: where we build an array to help us aggregate the current sums, and lastly something new. In one case, it could simply be arithmetic manipulation, another can be virtual indexing.
