@@ -30,7 +30,23 @@ var pushDominoes = function(dominoes) {
     return finalDominoes.join("");
 };
 
-Question 896: Monotonic Array---
+Question 888: Fair Candy Swap---------------------------------------------------------------------------------------------------------------Question 888: Fair Candy Swap
+
+Optimal Solution:
+
+We just want to find the differnce of the candies, then iterate through the first array adding the difference to each element and seeing if that element would exist in the second array.
+
+var fairCandySwap = function(A, B) {
+
+    let div = (eval(B.join("+")) - eval(A.join("+")))/2;
+    
+    for( i = 0; i < A.length; i++ ){
+            if(B.indexOf(A[i]+div) >= 0)
+                return [A[i], A[i]+div];
+    }
+};
+
+Question 896: Monotonic Array---------------------------------------------------------------------------------------------------------------Question 896: Monotonic Array
 
 Monotonic arrays are either increasing or decreasing.
 
