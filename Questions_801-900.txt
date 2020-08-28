@@ -30,6 +30,25 @@ var pushDominoes = function(dominoes) {
     return finalDominoes.join("");
 };
 
+Question 867: Transpose Matrix
+
+Brute force:
+
+We would copy the matrix's elements over to a new matrix
+
+var transpose = function(A) {
+    let result = [];
+    
+    for(let i= 0; i<A[0].length; i++){
+        let currentCol = []
+        for(let j=0; j<A.length; j++){
+            currentCol.push(A[j][i])
+        }
+        result.push(currentCol);
+    }
+    return result
+};
+
 Question 888: Fair Candy Swap---------------------------------------------------------------------------------------------------------------Question 888: Fair Candy Swap
 
 Optimal Solution:
