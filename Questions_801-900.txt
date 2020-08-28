@@ -30,4 +30,30 @@ var pushDominoes = function(dominoes) {
     return finalDominoes.join("");
 };
 
+Question 896: Monotonic Array---
+
+Monotonic arrays are either increasing or decreasing.
+
+Optimal
+We would just check the outer boundaries and see if it is either increasing or decreasing. This is just a two pointer approach. We would then iterate inwards
+
+var isMonotonic = function(A) {
+    let a = 0;
+	let b = 1;
+	let change;
+	while (b <= A.length - 1) {
+		if (change === undefined && A[a] !== A[b]) {
+			change = A[a] < A[b] ? 'increasing' : 'decreasing'
+		}
+		if (change === 'increasing') {
+			if (A[a] > A[b]) return false;
+		}
+		if (change === 'decreasing') {
+			if (A[a] < A[b]) return false;
+		}
+		a++;
+		b++;
+	}
+	return true;
+};
 
