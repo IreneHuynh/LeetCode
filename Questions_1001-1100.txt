@@ -45,3 +45,23 @@ var longestArithSeqLength = function(A) {
     }
     return max
 };
+
+Question 1051:
+
+Using brute force:
+
+We sort and then compare if they are the same element
+
+var heightChecker = function(heights) {
+    let countMoves = 0;
+    let sortedArray = [...heights].sort((a, b) => a - b);
+    
+    // if the values of the input array and sorted array are not the same, then the value should be moved
+    for (let i = 0; i < heights.length; i++) {
+        if (heights[i] !== sortedArray[i]) {
+            countMoves++;
+        }
+    }
+        
+    return countMoves;
+};
