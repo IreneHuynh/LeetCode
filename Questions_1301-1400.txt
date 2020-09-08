@@ -1,1 +1,12 @@
 
+Question 1313: Decompress Run-length Encoder
+
+Brute force would be to make multiple arrays and append them together, here, the reducer function would help
+
+var decompressRLElist = function(nums) {
+  return nums.reduce(
+    (acc, cur, i, arr) =>
+      i % 2 ? [...acc, ...Array(arr[i - 1]).fill(cur)] : acc,
+    []
+  );
+};
