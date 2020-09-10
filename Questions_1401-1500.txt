@@ -1,3 +1,22 @@
+Question 1450: Number of students Doing Homework at a Given Time
+
+Brute force:
+
+This is just a simple logic question, if the time of query is between the start and end time then we know that that student was busy and we just count that student
+
+const busyStudent = (startTime, endTime, queryTime) => {
+  let count = 0;
+
+  for (let i = 0; i < startTime.length; i++) {
+    let start = startTime[i];
+    let end = endTime[i];
+
+    if (start <= queryTime && queryTime <= end) count++
+  }
+
+  return count;
+}
+
 Question 1482: Minimum Numbers of Days to Make m Bouquets---------------------------------------------Question 1482: Minimum Numbers of Days to Make m Bouquets
 
 Brute force, this is essentially a search problem. We are trying to search through the array to see if we can collect m*k flowers such that each m bouquets consist of k adjacent flowers. We are checking if we can make a m bouquets of k flowers in our helper. We are simply increasing the mid and checking if we can make m bouquets of k within that array.
