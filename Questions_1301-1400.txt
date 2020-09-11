@@ -1,4 +1,3 @@
-
 Question 1313: Decompress Run-length Encoder
 
 Brute force would be to make multiple arrays and append them together, here, the reducer function would help
@@ -9,4 +8,33 @@ var decompressRLElist = function(nums) {
       i % 2 ? [...acc, ...Array(arr[i - 1]).fill(cur)] : acc,
     []
   );
+};
+
+
+Question 1337: The K Weakest Rows in a Matrix
+
+A Brute force would be maping everying row to a row and a count of soldiers, order those and returning the first k indexies.
+
+var kWeakestRows = function (mat, k) {
+  return mat
+    .map((e, i) => [i, e.reduce((acc, cur) => acc + cur, 0)])
+	//turn the array into [index, sum of soilders] form
+    .sort((a, b) => (a[1] == b[1] ? a[0] - b[0] : a[1] - b[1]))
+	//sort the array: if the number of soilders is equal then sort with the index of the row 
+    .map((x) => x[0])
+	//take of the row index of the sorted result
+    .slice(0, k);
+	//slice the result according to k number
+};
+
+Here is a faster way but using the same methods
+
+var kWeakestRows = function(mat, k) {
+    const map = new Map();
+    for(const [i, m] of mat.entries()) {
+        map.set(i, m.reduce((a, b) => a + b));
+    }
+    return [...map.keys()]
+        .sort((a,b) => map.get(a) !== map.get(b) ? map.get(a) - map.get(b) : a - b)
+        .slice(0, k);
 };
