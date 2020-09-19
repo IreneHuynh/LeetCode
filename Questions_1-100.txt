@@ -321,6 +321,34 @@ var threeSum = function(nums) {
 	return rtn;
 };
 
+Question 16: 3Sum Closets
+
+Similar to 3Sum but we have an object that has the sum and the difference so that we can later sort
+Brute Force:
+
+var threeSumClosest = function(nums, target) {
+    nums.sort((a,b)=> a-b);
+    var min ;
+    for(var i=0;i<nums.length;i++){
+        var j = i+1;
+        var k  = nums.length-1;
+        while(j < k){
+            var sum = nums[i]+nums[j]+nums[k];
+            var diff1 = Math.abs(sum-target)
+            var temp1 =[diff1,sum]
+            if(sum === target) return target;
+            else if(sum > target){
+                !min ? min = temp1: min[0] > temp1[0]? min= temp1:min;
+                 k--;
+            }
+            else{
+              !min ? min = temp1: min[0] > temp1[0]? min= temp1:min;
+              j++;
+            }
+        };
+    } return min[1];
+};
+
 Question 21: Merge Two Sorted Lists--------------------------------------------------------------------------------------------------Question 21: Merge Two Sorted Lists
 
 Optimal Solution: 
