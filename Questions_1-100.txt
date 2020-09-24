@@ -449,6 +449,30 @@ var combinationSum = function(candidates, target) {
 
 We wouldn't be able to memoize this because we trust the backtracking and also we are not revisiting any past combinations. Basically we wouldn't be able to optimize the solution any further. Many of the question involving backtracking are the same
 
+Question 42: Combination Sum 2
+
+Like the previous question we just add one more condition, that we make sure we only use each element once!
+
+var combinationSum2 = function(candidates, target) {
+    candidates.sort(function(a, b) {
+        return a-b
+    })
+    var result = []
+    
+    function findResult(currentResult, candidates, target) {
+        if (target === 0) result.push(currentResult)
+        for (let i=0; i<candidates.length; i++) {
+            if (i!==0 && candidates[i] === candidates[i-1]) continue
+            if (target-candidates[i]<0) return
+            findResult(currentResult.concat([candidates[i]]), candidates.slice(i+1), target-candidates[i])
+        }
+    }
+    
+
+    findResult([], candidates, target)
+    return result
+};
+
 Question 43: Muliply Strings---------------------------------------------------------------------------------------------------------Question 43: Muliply Strings
 
 
