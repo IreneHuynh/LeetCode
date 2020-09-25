@@ -517,6 +517,23 @@ var permute = function(nums) {
   }
 };
 
+Question 48: Rotate Image
+
+I like to think that we are going down each colum and reversing it and then turning them into rows.
+
+var rotate = function(matrix) {
+  for(let i=0;i<matrix.length;i++){
+      for(let j=i+1;j<matrix[i].length;j++){
+          let temp = matrix[i][j]
+          matrix[i][j] = matrix[j][i]
+          matrix[j][i] = temp
+      }
+  }
+  for(let i=0;i<matrix.length;i++){
+      matrix[i].reverse()
+  }  
+};
+
 Question 49: Group Anagrams-------------------------------------------------------------------------------------------------------Question 49: Group Anagrams
 
 This question is very similar to finding the complement. We just make sure that all the letters are the same for all the elements in the array
