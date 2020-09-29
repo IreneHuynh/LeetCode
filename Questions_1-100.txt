@@ -640,6 +640,25 @@ var merge = function(nums1, m, nums2, n) {
     return nums1
 };
 
+Question 90: Subset !!
+
+This is like many of the backtracking question we have done before
+
+var subsetsWithDup = function(nums) {
+    nums.sort()
+    const powerset = [];
+    
+    function permute(arr, index) {
+        powerset.push(arr)
+        
+        for(let i = index; i < nums.length; i++) {
+            if(i !== index && nums[i] === nums[i-1]) continue;
+            permute([...arr, nums[i]], i+1)
+        }
+    }
+    permute([], 0);
+    return powerset;
+};
 
 Question 95: Unique Binary Search Trees II-----------------------------------------------------------------------------Question 95: Unique Binary Search Trees II
 Brute force:
