@@ -600,6 +600,32 @@ var plusOne = function(digits) {
     
     return digits;
 }
+
+Question 75: sort colors
+
+The brute force would to just to sort this in logn time
+
+Optimal solution would be to have three pointers. One at the end and two at the beginning.
+In this case think of the i j k pointer as 0 1 and 2 pointers
+In fact this is similar to 3Sum. However this is order specific so we would check if the element is a 2, then we would swap it with the last element, and decrement the 2 pointer. If the value was zero we would increment the zero and 1 pointer and lastly if it was a 1 we would just increment the 1 pointer.
+
+var sortColors = function(nums) {
+    let [lo, cur, hi] = [0, 0, nums.length - 1]
+    while (cur <= hi) {
+        if (nums[cur] === 2) {
+            nums[cur] = nums[hi]
+            nums[hi--] = 2
+        }
+        if (nums[cur] === 0) {
+            nums[cur++] = nums[lo]
+            nums[lo++] = 0
+        }
+        if (nums[cur] === 1) {
+            cur++
+        }
+    }
+};
+
 Question 86:
 class Solution {
     public ListNode deleteDuplicates(ListNode head) {
