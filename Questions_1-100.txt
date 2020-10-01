@@ -393,6 +393,8 @@ var strStr = function(haystack, needle) {
     return haystack.indexOf(needle);
 };
 
+
+
 Question 36: Valid Sudoku-------------------------------------------------------------------------------------------------------------Question 36: Valid Sudoku
 var isValidSudoku = function(board) {
     let rows ={};
@@ -558,6 +560,30 @@ var groupAnagrams = function(strs) {
     }
     
     return output;
+};
+
+Question 55: Jump Game
+
+This is similar to the min stars we have done before, we want to minimize the numeber of steps we take and we know that we start off with the first step at index 0. I will just skip the the memoization algorithm
+
+var canJump = function(nums) {
+    const memo = new Map();
+    
+    function permute(idx) {
+        if(memo.has(idx)) return memo.get(idx)
+        if(idx >= nums.length-1) return true;
+        if(nums[idx] === 0) return false;
+        
+        for(let i = nums[idx]; i >= 1; i--) {
+            if(permute(idx + i)) {
+                memo.set(idx, true);
+                return true
+            }
+        }
+        memo.set(idx, false);
+        return false;
+    }
+    return permute(0);
 };
 
 Question 53: Maximum Subarray-------------------------------------------------------------------------------------------------------Question 53: Maximum Subarray
