@@ -652,6 +652,22 @@ var sortColors = function(nums) {
     }
 };
 
+
+Question 78: Subsets
+
+This question is like many backtracking question. We add an element, check if it's a valid array then add it to a list of valid arrays
+
+var subsets = function(nums) {
+    const subsets = [[]]
+    nums.forEach((n)=>{
+        subsets.forEach((s) => {
+            subsets.push([...s, n])
+        })
+    })
+    return subsets 
+};
+
+
 Question 86:
 class Solution {
     public ListNode deleteDuplicates(ListNode head) {
