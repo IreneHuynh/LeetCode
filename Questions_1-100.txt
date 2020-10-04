@@ -667,6 +667,47 @@ var subsets = function(nums) {
     return subsets 
 };
 
+Question 79: Word Search
+
+This is similar to many of the backtracking questions. Except we are iterating through the posible paths of the matrix. Then for each direction we are access the matrix from different points and asking if we have found that letter.
+
+var exist = function(board, word) {
+    let x = board.length;
+    let y = board[0].length
+    let z = word.length;
+    
+    for(let i = 0; i < x; i++)
+    {
+        for(let j = 0; j < y; j++)
+        {
+            if(dfs(i,j,0)) return true;//word found
+        }
+    }
+    
+    function dfs(i,j,k)
+    {
+         if(i >= 0 && i < x && j >= 0 && j < y && k < z && board[i][j] == word[k])
+         {
+            if(k == z - 1) return true;//complete word found
+            
+            k = k + 1; //next word
+             
+            let temp = board[i][j];//storing for backtraking
+            board[i][j] = "";//this character should not be matched again in the currect word
+             
+            let found = dfs(i + 1,j,k) || dfs(i,j + 1,k) || dfs(i - 1,j,k) || dfs(i,j - 1,k);
+            
+            board[i][j] = temp;//backtracking
+             
+            return found;
+         }
+         return false;  
+    }
+    
+    return false;//if match not found
+    
+};
+
 
 Question 86:
 class Solution {
