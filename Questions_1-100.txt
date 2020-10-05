@@ -561,6 +561,22 @@ var groupAnagrams = function(strs) {
     
     return output;
 };
+Question 53: Maximum Subarray
+
+This is another instance of where this is a math problem, we either add the element or we don't. In the case we don't, this means we start a new sub array at this index. We will use Kadanes algorithm because this exactly the case.
+
+const maxSubArray = function(nums) {
+    let max_ending_here = 0;
+    let max_so_far = -Number.MAX_VALUE;
+
+  for (let i = 0; i < nums.length; i++) {
+      max_ending_here = Math.max(max_ending_here + nums[i], nums[i]);
+      max_so_far =  Math.max(max_ending_here, max_so_far);
+  }
+    
+  return max_so_far;
+};
+
 
 Question 55: Jump Game
 
