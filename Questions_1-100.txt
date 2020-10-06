@@ -602,19 +602,28 @@ var canJump = function(nums) {
     return permute(0);
 };
 
-Question 53: Maximum Subarray-------------------------------------------------------------------------------------------------------Question 53: Maximum Subarray
-We can use kadanes algorithm which is prefixSum
+Question 56: Merge Intervals
 
-const maxSubArray = function(nums) {
-    let max_ending_here = 0;
-    let max_so_far = -Number.MAX_VALUE;
-
-  for (let i = 0; i < nums.length; i++) {
-      max_ending_here = Math.max(max_ending_here + nums[i], nums[i]);
-      max_so_far =  Math.max(max_ending_here, max_so_far);
-  }
-    
-  return max_so_far;
+var merge = function(intervals) {
+    if (!intervals.length) return [];
+    intervals.sort(([i, j], [m, n]) => m - i || n - j);
+    // stack based solution
+    let output = []
+    while (intervals.length) {
+        let [i, j] = intervals.pop();
+        // squeeze adjacent intervals
+        while (intervals.length) {
+            let [m, n] = intervals.pop();
+            // check if overlapping -> merge
+            if (m <= j) [i, j] = [i, Math.max(j, n)];
+            else {
+                output.push([i, j]);
+                [i, j] = [m, n];
+            }
+        }
+        output.push([i,j]);
+    }
+    return output;
 };
 
 Question 58: Length of Last Word-----------------------------------------------------------------------------------------------------------Question 58: Length of Last Word
