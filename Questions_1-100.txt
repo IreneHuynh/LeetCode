@@ -496,6 +496,24 @@ var multiply = function(num1, num2) {
     
 }
 
+Question 45: Jump Game
+
+Here we are trying to maximize our jumps which means we want to jump to the index that contains the largest jump values. We know that we have to start at the first element and that all jump elements are non zero
+
+var jump = function(nums) {
+    let newMax = 0;
+    let jump = 0;
+    let oldMax = 0;
+    for (let i=0;i<nums.length-1;i++) {
+        newMax = Math.max(newMax, i+nums[i]);
+        if (i == oldMax) {
+            jump++;
+            oldMax = newMax;
+        }
+    }
+    return jump;
+};
+
 Question 46: Permutations---------------------------------------------------------------------------------------------------------Question 46: Permutations
 
 There are many questions similar to this where we use the backtracking method and because we are not revisiting values, we wouldn't have a reason to memoize it
