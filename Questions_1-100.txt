@@ -653,6 +653,18 @@ var lengthOfLastWord = function(s) {
     return words.length ? words[words.length-1].length : 0;
 };
 
+Question 62: Unique Paths
+When we are updating the matrix we want to start with the first row and the first column with values of one, because there is only one path you can take. If you think about it you can only get to the next path from either the top value or the left values. That means that we are always adding the top matrix with the left matrix to get the current value. We then get the final value at the last element becaues that is how many times we have gone to that element.
+var uniquePaths = function(m, n) {
+    const matrix = Array.from({ length: m }, () => Array(n).fill(1));
+    for (let i = 1; i < m; i++) {
+        for (let j = 1; j < n; j++) {
+            matrix[i][j] = matrix[i - 1][j] + matrix[i][j - 1];
+        }
+    }
+    return matrix[m - 1][n - 1];
+};
+
 Question 66: Plus One-----------------------------------------------------------------------------------------------------------------------Question 66: Plus One
 
 var plusOne = function(digits) {
