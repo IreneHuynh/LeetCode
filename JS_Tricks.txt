@@ -36,3 +36,18 @@ console.log(array1.reduce(reducer));
 console.log(array1.reduce(reducer, 5));
 // expected output: 15
 
+2.) This is just a simple algorith that comes up a lot. It's the backtracking algorithn and is used in a lot of the solutions. This is a skeleton taken from combination sum. We always pass an empty list of list and ask if the conditions are ment to add a list of elements before adding them to the list of list. Sometimes the conditions varies such as no duplicate elements.
+
+var combinationSum = function(candidates, target) {
+    const res = [];
+    candidates.sort();
+    function permute(arr=[], remain = target, index=0) {
+        if(remain < 0) return;
+        else if(remain === 0) res.push(arr);
+        for(let i = index; i < candidates.length; i++) {
+            permute([...arr, candidates[i]], remain-candidates[i], i);
+        }
+    }
+    permute()
+    return res;
+};
