@@ -1,3 +1,25 @@
+Question 228: Summary Ranges
+
+Again this is two pointer. We just want to compare the prev with the next to make sure there is a difference of 1. After finding the range we just push
+
+var summaryRanges = function(nums) {
+    const ranges = [];
+    let i = 0;
+    // Iterate through `nums` and use `j` to identify incontinuity.
+    // When incontinuity occurs, compose the current range and set `i`
+    // for the new starting point.
+    for (let j = 1; j <= nums.length; j++) {
+        if (nums[j] !== nums[j - 1] + 1) {
+            if (i === j - 1) {
+                ranges.push(`${nums[i]}`);
+            } else {
+                ranges.push(`${nums[i]}->${nums[j - 1]}`);    
+            }          
+            i = j;
+        }
+    }
+    return ranges;
+};
 
 Question 278: First Bad Version------------------------------------------------------------------------------------------------------Question 278: First Bad Version
 
