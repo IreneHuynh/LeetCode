@@ -92,6 +92,7 @@ const productExceptSelf = (nums) => {
     return product;
 }
 
+If we want to make it linear space, we just use the left prefix sum and have a right side as a variable, where we gather all the multiples of from the right side
 
 Question 278: First Bad Version------------------------------------------------------------------------------------------------------Question 278: First Bad Version
 
