@@ -18,6 +18,20 @@ var buildTree = function(preorder, inorder) {
     return recursion(0, inorder.length-1);
 };
 
+Question 136: Single Number
+
+Brute force we would just iterate through the array and append onto a new array the element, and if we encounter it again we would remove such that the last element is the single element. This would be O(n^2) in time and O(n) in space.
+
+For optimal we would just use a hashSet, if the set don't contain the element we just add it to a sum of set constant, otherwise we add it to the sum of nums.
+at the end we just return 2 time su of set - sum of nums.
+
+Another Optimal solution is using xor
+
+var singleNumber = function(nums) {
+    return nums.reduce((res, n) => res ^ n, 0)
+};
+
+
 Question 152: MaximumProduct Subarray
 
 const maxProduct = (nums) => {
