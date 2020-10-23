@@ -1,3 +1,26 @@
+Question 202: Happy Number 
+
+Our main idea for solution here is to keep on having sum of square of digits and store it in a set or object.
+After calculating sum of digits of a num each time, check if it is already in our storage or if it equals 1.
+If it equals 1 then return true. if it is already in storage then return false as a endless loop has formed and it is repeating now.
+If both condition doesnt match then keep on continuing.
+
+var isHappy = function(n) {
+    let set = new Set();
+    while(!set.has(n)) {
+        set.add(n);
+        let arr = n.toString();
+        let squarsSum = 0;
+        for (let i = 0; i < arr.length; i++){
+            squarsSum += Math.pow(+arr[i],2)
+        }
+        if (squarsSum === 1) return true;
+        n = squarsSum;
+    }
+    return false;
+};
+
+
 Question 228: Summary Ranges
 
 Again this is two pointer. We just want to compare the prev with the next to make sure there is a difference of 1. After finding the range we just push
