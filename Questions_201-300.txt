@@ -20,6 +20,22 @@ var isHappy = function(n) {
     return false;
 };
 
+Question 205: Isomorphic Strings
+
+Brute force we would just want to map the character, this is hashset question. 
+
+var isIsomorphic = function(s, t) {
+    if (s.length !== t.length) return false;
+    if (new Set(s).size !== new Set(t).size) return false;
+    let map = new Map();
+    for (let i = 0; i < t.length; i++) {
+        if (map.has(s[i]) && map.get(s[i]) !== t[i]) {
+            return false;
+        }
+        map.set(s[i], t[i])
+    }
+    return true;
+};
 
 Question 228: Summary Ranges
 
