@@ -20,6 +20,28 @@ var isHappy = function(n) {
     return false;
 };
 
+Question 204: 
+
+There is a method called the Sieve of Eratothenes.
+
+var countPrimes = function (n) {
+    let primes = [];
+    for (let i = 0; i < n; i++) primes[i] = true;
+    primes[0] = false, primes[1] = false;
+    for (let i = 2; i < Math.sqrt(n); i++) {
+        if (primes[i] == true) {
+            for (let j = i**2; j < n; j += i) { 
+                // optimisation: we start at i**2 instead of i*2
+                primes[j] = false;
+            }
+        }
+    }
+    return primes.map((bool, idx) => bool ? idx : 0)
+            .filter(val => val > 0).length;
+    // Time Complexity: O(nlog(n))
+    // Space Complexity: O(n)
+};
+
 Question 205: Isomorphic Strings
 
 Brute force we would just want to map the character, this is hashset question. 
