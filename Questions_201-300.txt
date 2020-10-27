@@ -174,6 +174,26 @@ const productExceptSelf = (nums) => {
 
 If we want to make it linear space, we just use the left prefix sum and have a right side as a variable, where we gather all the multiples of from the right side
 
+Question 242: Valid Anagram
+
+The brute force would just be sorting out the strings s and t and then comparing the elements. This would take nlogn n time for the sort and n for the comparisons. We know that nlogn will dominate
+
+The optimal solution is use a hashset, where each letter is its own key and the value is the number of occurances.
+
+var isAnagram = function(s, t) {
+    if(s.length!==t.length) return false;
+    let map = {};
+    for(let char of s){
+        map[char] = ++map[char] || 1
+    }
+    for(let char of t){
+        if(!map[char]) return false;
+        map[char]--
+    }
+    return true;
+};
+
+
 Question 278: First Bad Version------------------------------------------------------------------------------------------------------Question 278: First Bad Version
 
 Optimal Solution:
