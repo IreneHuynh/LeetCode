@@ -51,3 +51,18 @@ var combinationSum = function(candidates, target) {
     permute()
     return res;
 };
+
+3.) Another trick is in the case of using maps. 
+var isAnagram = function(s, t) {
+    if(s.length!==t.length) return false;
+    let map = {};
+    for(let char of s){
+        map[char] = ++map[char] || 1
+    }
+    for(let char of t){
+        if(!map[char]) return false;
+        map[char]--
+    }
+    return true;
+};
+In this case, if there is no value in that map entry we can set it to 1 as default, otherwise it add one to the current value at that key.
