@@ -30,6 +30,22 @@ var integerBreak = function(n) {
     return dp[n];
 };
 
+Question 349: Intersection of two Arrays
+The Brute force, would be to interate through the first array and then checking if the number exist in the second array.
+
+The optimal solution would be to add the first array into a set, and then we iterate through the second array and check if it the elements also exist in the second array, then we add the intersecting elements to a new set and return that set.
+
+var intersection = function(arr1, arr2) {
+    let firstSet = new Set(arr1), intersectionSet = new Set();
+    for (let num of arr2) {
+        if (firstSet.has(num)) intersectionSet.add(num);
+    }
+    return Array.from(intersectionSet);
+    // Time Complexity: O(n+k) where n is the number of elements in arr1 and k is the number of elements that intersect
+    // Space Complexity: O(n+k)
+};
+
+
 Question 394: Decode String-----------------------------------------------------------------------------------------------------------Question 394: Decode String
 
 This can either be recursive or stack,
